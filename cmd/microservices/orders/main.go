@@ -39,17 +39,17 @@ func main() {
 			panic(err)
 		}
 
-		// 【逻辑问题】由于上面的ListenAndServe()是阻塞的，这行代码永远不会执行
-		// 意图：等待上下文被取消（即收到终止信号）
-		<-ctx.Done()
-
-		log.Println("closing the orders service ...")
-
-		if err := server.Close(); err != nil {
-			panic(err)
-		}
-
 	}()
+
+	// 【逻辑问题】由于上面的ListenAndServe()是阻塞的，这行代码永远不会执行
+	// 意图：等待上下文被取消（即收到终止信号）
+	<-ctx.Done()
+
+	log.Println("closing the orders service ...")
+
+	if err := server.Close(); err != nil {
+		panic(err)
+	}
 
 }
 
