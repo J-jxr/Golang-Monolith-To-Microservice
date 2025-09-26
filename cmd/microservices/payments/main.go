@@ -37,10 +37,3 @@ func createOrdersMicroservice() amqp.paymentsInterface {
 	return paymentsInterface
 
 }
-
-
-
-
-
-
-} 
