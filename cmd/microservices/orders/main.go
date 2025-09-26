@@ -60,8 +60,8 @@ func createOrdersMicroservice()(router *chi.Mux, closeFunc func()) {
 
 	r := cmd.CreateRouter()
 
-	orders_public_http.AddRouter(r, ordersService, ordersRepo)
-	orders_private_http.AddRouter(r, ordersService, ordersRepo)
+	orders_public_http.AddRoutes(r, ordersService, ordersRepo)
+	orders_private_http.AddRoutes(r, ordersService, ordersRepo)
 
 	return r, func(){
 		
