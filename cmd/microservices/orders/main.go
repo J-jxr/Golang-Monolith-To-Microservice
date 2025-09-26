@@ -53,4 +53,17 @@ func main() {
 
 }
 
+func createOrdersMicroservice()(router *chi.Mux, closeFunc func()) {
+	cmd.WaitForService(os.Getenv("SHOP_RABBITMQ_ADDR"))
 
+	shopHTTPClient := orders_infra_product.NewHTTPClient(os.Getenv("SHOP_SERVICE_ADDR"))
+
+	r := cmd.CreateRouter()
+
+	orders_public_http.AddRouter(r, ordersService, ordersRepo)
+	orders_private_http.AddRouter(r, ordersService, ordersRepo)
+
+	return r, func(){
+		
+	}
+}
